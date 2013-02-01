@@ -1,0 +1,19 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+    "dependencies": {
+    "express": "3.0.0rc5",
+    "jade": "0.28.1",
+    "stylus": "0.32.0",
+    "cookies":"0.3.6",
+    "keygrip": "0.2.2",
+    "mongodb": "1.2.11",
+    "mongoose": "3.5.5",
+    "oauth": "0.9.8",
+    "redis": "0.8.2",
+  }
+}
