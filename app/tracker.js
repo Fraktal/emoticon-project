@@ -1,5 +1,5 @@
-var twitter = require("immortal-ntwitter")
-var express = require("express");
+var twitter = require('immortal-ntwitter')
+var express = require('express');
 var app = express();
 var credentials = require('./credentials.js');
 
@@ -9,7 +9,7 @@ var twit = new twitter({
     access_token_key: credentials.access_token_key,
     access_token_secret: credentials.access_token_secret
 });
-
+ 
 app.listen(3000);
 
 twit.immortalStream('statuses/sample', null, function(immortalStream) {
@@ -19,6 +19,8 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          var day = new Date(Date.parse(d)).getDate();
          var year = new Date(Date.parse(d)).getFullYear();
          var date = (year + "-" + month + "-" + day);
-         console.log(date + ' The tweets are '+ data.text.match(/\s(\w+)\s((?::|;|=)(?:-)?(?:\)|D|P))/));
+         var queryText = data.text.match(/\^|\s(.*)\s((?::|;|=)(?:-)?(?:\)|D|P))|\$/);
+
+         console.log(date + ' The tweets are '+ queryText);
        });         
    });
