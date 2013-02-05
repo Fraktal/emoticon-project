@@ -1,7 +1,10 @@
 var twitter = require('immortal-ntwitter')
 var express = require('express');
 var credentials = require('./credentials.js');
-var db = require("./db");
+//var db = require("./db"); for app.js
+var dburl = 'localhost/emoticon-project';
+var collections = ['querydata'];
+var db = require('mongojs').connect(dburl,collections);
 var app = express();
 
 var twit = new twitter({
@@ -23,5 +26,15 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          var queryText = data.text.match(/\s(.*)\s((?::|;|=)(?:-)?(?:\)|D|P))/);
 
          console.log(date + ' The tweets are '+ queryText);
-       });         
+
+         db.querydata.save(queryText, function(err, saveData){
+         if(err || !saveData) console.log("This text " + queryText + " not saved because of " + err);
+         else console.log("This text " + queryText + " saved");  
+        });
+      });         
    });
+
+function querydata (queryText, date){
+       this.queryText = queryText;
+       this.date = date;
+}
