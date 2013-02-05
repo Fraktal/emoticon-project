@@ -1,7 +1,8 @@
 var twitter = require('immortal-ntwitter')
 var express = require('express');
-var app = express();
 var credentials = require('./credentials.js');
+var db = require("./db");
+var app = express();
 
 var twit = new twitter({
     consumer_key: credentials.consumer_key,

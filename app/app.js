@@ -6,8 +6,11 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
-  , http = require('http')
+  , http = require('http') 
   , path = require('path');
+  , databaseUrl = "localhost:27017/somedb"; 
+  , collections = ["querytext"]
+  , db = require("mongojs").connect(databaseUrl, collections);
 
 var app = express();
 
@@ -34,3 +37,5 @@ app.get('/users', user.list);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+module.exports = db;
