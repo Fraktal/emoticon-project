@@ -23,14 +23,14 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          var day = new Date(Date.parse(d)).getDate();
          var year = new Date(Date.parse(d)).getFullYear();
          var date = (year + "-" + month + "-" + day);
-         var queryText = data.text.match(/\s(.*)\s((?::|;|=)(?:-)?(?:\)|D|P))/);
+         var queryText = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
 
          console.log(date + ' The tweets are '+ queryText);
 
-         db.querydata.save(queryText, function(err, saveData){
-         if(err || !saveData) console.log("This text " + queryText + " not saved because of " + err);
-         else console.log("This text " + queryText + " saved");  
-        });
+         //db.querydata.save(queryText, function(err, saveData){
+         //if(err || !saveData) console.log("This text " + queryText + " not saved because of " + err);
+         //else console.log("This text " + queryText + " saved");  
+        //});
       });         
    });
 
