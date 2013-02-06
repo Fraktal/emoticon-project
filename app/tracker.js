@@ -26,6 +26,8 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          var queryText = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
          console.log(date + ' Tweets: '+ queryText);
 
+         // this is still saving the null tweets. Need to fix!!!
+
          db.querydata.save({date: date, tweet: queryText}, function(err, saveData){
          if(err || !saveData) console.log("+++++++++++ " + queryText + " NOT SAVED because of " + err);
          if (queryText === null);
