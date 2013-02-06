@@ -8,7 +8,7 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http') 
   , path = require('path');
-  , databaseUrl = "localhost:27017/somedb"; 
+  , dburl = 'localhost/emoticon-project'; 
   , collections = ["querytext"]
   , db = require("mongojs").connect(databaseUrl, collections);
 

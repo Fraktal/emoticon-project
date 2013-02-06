@@ -1,8 +1,8 @@
+//var db = require("./db"); for app.js
 var twitter = require('immortal-ntwitter')
 var express = require('express');
 var credentials = require('./credentials.js');
-//var db = require("./db"); for app.js
-var dburl = 'localhost/emoticon-project';
+var dburl = 'localhost/querydata';
 var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
 var app = express();
@@ -26,15 +26,13 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          var queryText = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
          console.log(date + ' Tweets: '+ queryText);
 
-         //This works!!! As far as I can tell at this point
-
          db.querydata.save({date: date, tweet: queryText}, function(err, saveData){
          if(err || !saveData) console.log("+++++++++++ " + queryText + " NOT SAVED because of " + err);
          if (queryText === null);
          else console.log("===>> " + queryText + " <<===SAVED");  
-        });
-      });         
-   });
+      });
+   });         
+});
 
 function querydata (queryText, date){
        this.queryText = queryText;
