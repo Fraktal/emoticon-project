@@ -15,6 +15,7 @@
     "mongoose": "3.5.5",
     "oauth": "0.9.8",
     "redis": "0.8.2",
-    "twitter-bootstrap-node": "0.1.2"
+    "twitter-bootstrap-node": "0.1.2",
+    "clusterfck": "0.5.2"
   }
 }

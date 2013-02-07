@@ -1,13 +1,12 @@
 var dburl = 'localhost/querydb';
 var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
-var tracker = require('./tracker.js');
 
-db.querydata.find(queryText, function(err, saveData){
-    if(err || !saveData.length)console.log('Tweet: ' + querydata + ' not found');   
-    else querydata.forEach(function(querydata){
-    console.log('Tweet: ' + querydata + ' has been found');
-    });
+var clusterData = db.querydata.find({tweet: 1}, function(err, querydata){
+     if(err || !querydata.length)console.log('Tweet not found');   
+     else querydata.forEach(function(querydata){
+     console.log(querydata);
+     });
 });
 
 // this is not working. Can't figure out the find() for mongojs
