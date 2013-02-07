@@ -2,7 +2,7 @@
 var twitter = require('immortal-ntwitter')
 var express = require('express');
 var credentials = require('./credentials.js');
-var dburl = 'localhost/querydata';
+var dburl = 'localhost/querydb';
 var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
 var app = express();
@@ -27,11 +27,15 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          console.log(date + ' Tweets: '+ queryText);
 
          // this is still saving the null tweets. Need to fix!!!
-
+         
          db.querydata.save({date: date, tweet: queryText}, function(err, saveData){
          if(err || !saveData) console.log("+++++++++++ " + queryText + " NOT SAVED because of " + err);
          if (queryText === null);
-         else console.log("===>> " + queryText + " <<===SAVED");  
+         else console.log("===>> " + queryText + " <<===SAVED");
+
+         // if (queryText === null){
+            // db.querydata.remove();
+         // }  
       });
    });         
 });
