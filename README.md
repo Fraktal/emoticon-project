@@ -2,6 +2,8 @@ The emoticon-project is a sentiment analysis web app using machine learning meth
 
 This code is being developed by the NINA Lab at the University of North Carolina Asheville
 
+
+
 To install Emoticon-Project via git open terminal and run this command
 
     git clone git@github.com:Fraktal/emoticon-project.git
@@ -29,5 +31,7 @@ Since the app.js file is not really configured to run, you have to be in the app
     node tracker.js
 
 That should send a stream of tweets flowing down your terminal.
+
+
 
 REMINDER: This app is under construction and exists in a constant state of development    
