@@ -1,3 +1,4 @@
+var kmeans = require('node-kmeans');
 var dburl = 'localhost/querydb';
 var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
@@ -9,5 +10,5 @@ var clusterData = db.querydata.find({tweet: 1}, function(err, querydata){
      });
 });
 
-// this is not working. Can't figure out the find() for mongojs
+// this is keeps throwing the err "tweet not found"
 // Once we get the this working, we can start coding the Kmeans algo
