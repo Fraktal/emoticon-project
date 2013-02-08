@@ -2,7 +2,8 @@ The emoticon-project is a sentiment analysis web app using machine learning meth
 
 This code is being developed by the NINA Lab at the University of North Carolina Asheville
 
-
+Installation
+------------
 
 To install Emoticon-Project via git open terminal and run this command
 
