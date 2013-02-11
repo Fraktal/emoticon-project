@@ -16,6 +16,11 @@ var twit = new twitter({
  
 app.listen(3000);
 
+function querydata (queryText, date){
+       this.queryText = queryText;
+       this.date = date;
+}
+
 twit.immortalStream('statuses/sample', null, function(immortalStream) {
       immortalStream.on('data', function(data){
          var d = (data.created_at);
@@ -34,7 +39,4 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
    });         
 });
 
-function querydata (queryText, date){
-       this.queryText = queryText;
-       this.date = date;
-}
+
