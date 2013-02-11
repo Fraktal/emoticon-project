@@ -4,7 +4,7 @@ var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
 
 var data = db.querydata.find().sort({tweet: 1}, function(err, data) {
-    if(err)console.log('Tweet not found'); 
+    if(err)console.log('DATA NOT FOUND: ' + err); 
     else console.log(data);
 });
  
