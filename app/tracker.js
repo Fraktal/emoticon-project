@@ -28,8 +28,7 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
 
          if(queryText != null)db.querydata.save({date: date, tweet: queryText}, 
          function(err, saveData){
-            if(err || !saveData) console.log("+++++ " + queryText + " NOT SAVED because of " + err);
-            if (queryText === null);
+            if(err || !saveData) console.log("++++ " + queryText + " NOT SAVED: " + err);
             else console.log("==> " + queryText + " <==SAVED"); 
       });
    });         
