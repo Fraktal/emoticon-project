@@ -16,26 +16,7 @@ var key;
     count++;
 }
 
-//divide the tweets into groups (still working out the logic)
-smiley = function(data){
-  for(key in data){
-    if(key === key.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/) );
-    console.log(key);
-  }
-}
-
-sad = function(data){
-  if(key === {pattern: /\-/} );
-  console.log(data);
-}
-
-neutral = function(data){
-  if(key === {pattern: /\-/} );
-  console.log(data);
-}
-
-
-//tokenize tweets for each of the three to prepare for clustering
+//tokenize and stem tweets for each of the three to prepare for clustering
 var smile_token = natural.PorterStemmer.attach();
 console.log("i am really happy about this code".tokenizeAndStem());
 
