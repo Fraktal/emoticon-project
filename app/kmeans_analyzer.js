@@ -17,11 +17,11 @@ for(key in data){
 
   // Create the labels and the vectors describing the data
 
-var labels = new Array ;
+//var labels = new Array ;
 var vectors = new Array ;
   for (var i = 0 ; i < key ; i++) {
-      labels[i] = data[i]['tweet'] ;
-      vectors[i] = [ data[i]['smiley'] , data[i]['sad'], data[i]['neutral']] ;
+      //labels[i] = data[i]['tweet'] ;
+      vectors[i] = [ data[i]['date'] , data[i]['tweet']] ;
 }
 
 kmeans.clusterize(vectors, {k: 4}, function(err,res) {
