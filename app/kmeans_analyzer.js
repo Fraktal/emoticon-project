@@ -1,4 +1,5 @@
 var kmeans = require('node-kmeans');
+var natural = require('natural');
 var dburl = 'localhost/querydb';
 var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
@@ -10,18 +11,47 @@ var data = db.querydata.find().sort({tweet: 1}, function(err, data) {
 
 var count = 0;
 var key;
-for(key in data){
+  for(key in data){
     var value = data[key];
     count++;
 }
 
-  // Create the labels and the vectors describing the data
+//divide the tweets into groups (still working out the logic)
+smiley = function(data){
+  for(key in data){
+    if(key === key.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/) );
+    console.log(key);
+  }
+}
 
+sad = function(data){
+  if(key === {pattern: /\-/} );
+  console.log(data);
+}
+
+neutral = function(data){
+  if(key === {pattern: /\-/} );
+  console.log(data);
+}
+
+
+//tokenize tweets for each of the three to prepare for clustering
+var smile_token = natural.PorterStemmer.attach();
+console.log("i am really happy about this code".tokenizeAndStem());
+
+var sad_token = natural.PorterStemmer.attach();
+console.log("i am really sad this code sucks".tokenizeAndStem());
+
+var neutral_token = natural.PorterStemmer.attach();
+console.log("When I think f this code, I think whateva".tokenizeAndStem());
+
+
+// Create the labels and the vectors describing the data
 //var labels = new Array ;
 var vectors = new Array ;
   for (var i = 0 ; i < key ; i++) {
       //labels[i] = data[i]['tweet'] ;
-      vectors[i] = [ data[i]['date'] , data[i]['tweet']] ;
+      vectors[i] = [ key[i]['date'] , key[i]['tweet']] ;
 }
 
 kmeans.clusterize(vectors, {k: 4}, function(err,res) {
@@ -29,3 +59,12 @@ kmeans.clusterize(vectors, {k: 4}, function(err,res) {
   else console.log('%o',res);
 });
 
+
+//predictor for the closest 20 words to center from the cluster data
+classifier = new natural.BayesClassifier();
+classifier.addDocument('i am long qqqq', 'buy');
+classifier.addDocument('buy the q', 'buy');
+classifier.addDocument('short gold', 'sell');
+classifier.addDocument('sell gold', 'sell');
+classifier.train();
+console.log(classifier.classify('i am short silver'));
