@@ -4,10 +4,10 @@ var dburl = 'localhost/querydb';
 var collections = ['querydata'];
 var db = require('mongojs').connect(dburl,collections);
 
-var data = db.querydata.find().sort({tweet: 1}, function(err, data) {
+/*var data = db.querydata.find().sort({tweet: -1}, function(err, data) {
     if(err)console.log('DATA NOT FOUND: ' + err); 
-    //else console.log(data);
-});
+    else console.log(data);
+});*/
 
 var count = 0;
 var key;
@@ -16,6 +16,7 @@ var key;
     count++;
 }
 
+        
 //tokenize and stem tweets for each of the three to prepare for clustering
 var smile_token = natural.PorterStemmer.attach();
 console.log("i am really happy about this code".tokenizeAndStem());
