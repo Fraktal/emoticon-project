@@ -1,13 +1,14 @@
 var kmeans = require('node-kmeans');
 var natural = require('natural');
-var dburl = 'localhost/querydb';
-var collections = ['querydata'];
-var db = require('mongojs').connect(dburl,collections);
-//var parser = JSONStream.parse(['entities', /./);
+var collections = ['tweets'];
+var mongodb = require('mongodb');
+var db = require('mongodb');
+mongoclient = require('mongodb').Client;
 
-var data = db.querydata.find().sort({tweet: -1}, function(err, data) {
+
+var data = db.tweets.find().sort({tweet: -1}, function(err, data) {
     if(err)console.log('DATA NOT FOUND: ' + err); 
-    //else console.log(data);
+    else console.log(data);
 });
 
 var count = 0;
