@@ -37,11 +37,13 @@ new mongodb.Db('tweets', server, {w:1}).open(function (error, client) {
 
 twit.immortalStream('statuses/sample', null, function(immortalStream) {
       immortalStream.on('data', function(data){
+         
          var d = (data.created_at);
          var month = new Date(Date.parse(d)).getMonth()+1;
          var day = new Date(Date.parse(d)).getDate();
          var year = new Date(Date.parse(d)).getFullYear();
          var date = (year + "-" + month + "-" + day);
+         
          var tweets = new Array();
          var tweets = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
          var tweetString = JSON.stringify(tweets);
@@ -50,7 +52,7 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          if (tweets != null)
          collection.insert({date: date, tweet: tweetString,}, {safe:true}, function(err, objects) {
           if (err) console.log(err);
-          else console.log("===>  " + tweetString + " SAVED");                         
+          else console.log("===>  " + tweetString + " SAVED");                           
      });         
    });
 });

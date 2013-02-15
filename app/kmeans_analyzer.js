@@ -2,21 +2,21 @@ var kmeans = require('node-kmeans');
 var natural = require('natural');
 var collections = ['tweets'];
 var mongodb = require('mongodb');
-var db = require('mongodb');
-mongoclient = require('mongodb').Client;
+var mongoclient = require('mongodb').Client;
 
 
-var data = db.tweets.find().sort({tweet: -1}, function(err, data) {
+// mongoclient.connect("mongodb://localhost:27017/tweets", function(err, db) {
+  // if(err) { return console.dir(err); }
+// });
+
+// var collection = db.collection('tweets');  
+
+
+var data = db.tweets.find().sort({tweets: -1}, function(err, data) {
     if(err)console.log('DATA NOT FOUND: ' + err); 
     else console.log(data);
 });
 
-var count = 0;
-var key;
-  for(key in data){
-    var value = data[key];
-    count++;
-}
 
         
 //tokenize and stem tweets for each of the three to prepare for clustering
