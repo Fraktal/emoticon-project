@@ -8,9 +8,6 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http') 
   , path = require('path');
-  , dburl = 'localhost/querydb'; 
-  , collections = ["querytext"]
-  , db = require("mongojs").connect(databaseUrl, collections);
 
 var app = express();
 

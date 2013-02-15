@@ -27,9 +27,9 @@ app.listen(3000);
 var collection; //mongo database collection
 var server = new mongodb.Server("127.0.0.1", 27017, {});
 
-new mongodb.Db('tweets', server, {w:1}).open(function (error, client) {
-  if (error)
-      console.log(error);
+new mongodb.Db('tweets', server, {w:1}).open(function (err, client) {
+  if (err)
+      console.log(err);
   else
       collection = new mongodb.Collection(client, 'tweets');
       console.log('mongodb is connected!');
@@ -45,7 +45,7 @@ twit.immortalStream('statuses/sample', null, function(immortalStream) {
          var date = (year + "-" + month + "-" + day);
          
          var tweets = new Array();
-         var tweets = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
+         tweets = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
          var tweetString = JSON.stringify(tweets);
          console.log(date + ' Tweets: '+ tweetString);
          
