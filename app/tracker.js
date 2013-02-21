@@ -1,11 +1,6 @@
 /*
-To make the tracker.js consistent with other code in the lab, I got rid of the mongojs and installed
-mongodb instead. I figured this way everyone is familiar with the syntax and would make things easier 
-across the board. 
-
-I also changed some of the variables names. I will just keep tracking the emoticons via the tweets
-variable until we (Semmy) can figure out why the 'statuses/filter', ['track'] is giving the sleep
-init() when we run the file.
+   Twitter API ('statuses/filter', { "track":["cake"], "lang":"en" } working, however, we are still
+   trying to figure out how to track emoticons via the track
 */
 
 var twitter = require('immortal-ntwitter')
@@ -35,25 +30,24 @@ new mongodb.Db('tweets', server, {w:1}).open(function (err, client) {
       console.log('mongodb is connected!');
 });
 
-twit.immortalStream('statuses/sample', null, function(immortalStream) {
-      immortalStream.on('data', function(data){
-         
-         var d = (data.created_at);
+twit.immortalStream('statuses/filter', { "track":["cake"], "lang":"en" }, function(immortalStream) {
+      immortalStream.on('data', function(tweet){
+         var d = (tweet.created_at);
          var month = new Date(Date.parse(d)).getMonth()+1;
          var day = new Date(Date.parse(d)).getDate();
          var year = new Date(Date.parse(d)).getFullYear();
          var date = (year + "-" + month + "-" + day);
+         console.log(date + " " + tweet.text)
          
-         var tweets = new Array();
-         tweets = data.text.match(/\s(.*)\s((?::|;|=)|(?:-)?(?:\)|D|P))/);
-         var tweetString = JSON.stringify(tweets);
-         console.log(date + ' Tweets: '+ tweetString);
          
-         if (tweets != null)
-         collection.insert({date: date, tweet: tweetString,}, {safe:true}, function(err, objects) {
-          if (err) console.log(err);
-          else console.log("===>  " + tweetString + " SAVED");                           
-     });         
-   });
-});
+         collection.insert({date: date, tweet: tweet.text}, {safe:true}, function(err, objects) {
+            if (err) 
+                console.log(err);
+            else 
+                console.log("tweet has been saved");                  
+         });         
+     
+    });// end of tweet function
+
+});// end of stream
 

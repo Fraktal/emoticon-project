@@ -1,24 +1,21 @@
 var kmeans = require('node-kmeans');
 var natural = require('natural');
-var collections = ['tweets'];
-var mongodb = require('mongodb');
-var mongoclient = require('mongodb').Client;
+var mongoose = require('mongoose'),
+    db = mongoose.connect('mongodb://localhost/tweets'),
+    Collection = mongoose('tweets',db);
+
+Collection.find({tweet: -1}).each(function(saved_data){
+  console.log(saved_data);
+});    
 
 
-// mongoclient.connect("mongodb://localhost:27017/tweets", function(err, db) {
-  // if(err) { return console.dir(err); }
-// });
-
-// var collection = db.collection('tweets');  
-
-
-var data = db.tweets.find().sort({tweets: -1}, function(err, data) {
-    if(err)console.log('DATA NOT FOUND: ' + err); 
-    else console.log(data);
-});
+/*db.tweets.find({tweet: -1}, function(err, saved_data) {
+  if(err) console.log(err);
+  else console.log(save_data);
+});*/
 
 
-        
+      
 //tokenize and stem tweets for each of the three to prepare for clustering
 var smile_token = natural.PorterStemmer.attach();
 console.log("i am really happy about this code".tokenizeAndStem());
@@ -32,7 +29,7 @@ console.log("When I think f this code, I think whateva".tokenizeAndStem());
 
 // Create the labels and the vectors describing the data
 //var labels = new Array ;
-var vectors = new Array ;
+/*var vectors = new Array ;
   for (var i = 0 ; i < key ; i++) {
       //labels[i] = data[i]['tweet'] ;
       vectors[i] = [ key[i]['date'] , key[i]['tweet']] ;
@@ -41,7 +38,7 @@ var vectors = new Array ;
 kmeans.clusterize(vectors, {k: 4}, function(err,res) {
   if (err) console.error(err);
   else console.log('%o',res);
-});
+});*/
 
 
 //predictor for the closest 20 words to center from the cluster data
