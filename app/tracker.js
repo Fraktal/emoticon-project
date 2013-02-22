@@ -30,7 +30,8 @@ new mongodb.Db('tweets', server, {w:1}).open(function (err, client) {
       console.log('mongodb is connected!');
 });
 
-twit.immortalStream('statuses/filter', { "track":["cake"], "lang":"en" }, function(immortalStream) {
+
+twit.immortalStream('statuses/filter', { "track":["the"], "lang":"en" }, function(immortalStream) {
       immortalStream.on('data', function(tweet){
          var d = (tweet.created_at);
          var month = new Date(Date.parse(d)).getMonth()+1;
