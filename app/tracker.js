@@ -31,7 +31,7 @@ new mongodb.Db('tweets', server, {w:1}).open(function (err, client) {
 });
 
 
-twit.immortalStream('statuses/filter', { "track":["the"], "lang":"en" }, function(immortalStream) {
+twit.immortalStream('statuses/filter', { "track":[":)"], "lang":"en" }, function(immortalStream) {
       immortalStream.on('data', function(tweet){
          var d = (tweet.created_at);
          var month = new Date(Date.parse(d)).getMonth()+1;
@@ -46,7 +46,7 @@ twit.immortalStream('statuses/filter', { "track":["the"], "lang":"en" }, functio
                 console.log(err);
             else 
                 console.log("tweet has been saved");                  
-         });         
+         });        
      
     });// end of tweet function
 
